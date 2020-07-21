@@ -26,11 +26,10 @@ public class UserApi {
     }
 
     @GET
-    @RolesAllowed({"ADMIN", "USER"})
+    @RolesAllowed("ADMIN")
     public List<UserView> getUserList() {
         return userService.showAllUsers().stream().map(UserView::fromEntity).collect(Collectors.toList());
     }
-
 
     @POST
     @RolesAllowed("ADMIN")
@@ -54,11 +53,12 @@ public class UserApi {
         userService.changeUserPassword(userCommand);
     }
 
-    @Inject
-    public void addFirstUsers() {
-        userService.addUser(new User("user@gmail.com", "userpass", Role.USER));
-        userService.addUser(new User("admin@gmail.com", "adminpass", Role.ADMIN));
-    }
+//
+//    @Inject
+//    public  void initUsers() {
+//        userService.addUser(new User("user@gmail.com", "userpass", Role.USER));
+//        userService.addUser(new User("admin@gmail.com", "adminpass", Role.ADMIN));
+//    }
 
 
 }

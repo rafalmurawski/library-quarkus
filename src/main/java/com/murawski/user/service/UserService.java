@@ -25,7 +25,6 @@ public class UserService {
         userRepsitory.save(new User(user.getEmail(), user.getPassword(), user.getRole()));
     }
 
-
     public void deleteUser(String email) {
         User user = findByEmail(email);
         userRepsitory.delete(user);

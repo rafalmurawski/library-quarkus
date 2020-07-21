@@ -3,7 +3,6 @@ package com.murawski.library.model.entity;
 import com.murawski.user.model.entity.User;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -13,9 +12,6 @@ public class Copy {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull
-    @NotEmpty
-    private String signature;
 
     @OneToOne
     private User user;
@@ -27,16 +23,15 @@ public class Copy {
     public Copy() {
     }
 
-    public Copy(@NotNull @NotEmpty String signature, User user, @NotNull Book book) {
-        this.signature = signature;
+    public Copy(User user, @NotNull Book book) {
         this.user = user;
         this.book = book;
     }
 
-    public Copy(@NotNull @NotEmpty String signature, @NotNull Book book) {
-        this.signature = signature;
+    public Copy(@NotNull Book book) {
         this.book = book;
     }
+
 
     public Long getId() {
         return id;
@@ -44,14 +39,6 @@ public class Copy {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getSignature() {
-        return signature;
-    }
-
-    public void setSignature(String signature) {
-        this.signature = signature;
     }
 
     public User getUser() {
